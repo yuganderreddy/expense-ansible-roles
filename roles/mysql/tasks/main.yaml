@@ -4,6 +4,7 @@
     - boto3 
     - botocore
     - PyMySQL
+    - cryptography
     executable: pip3.9
 
 - name: install mysql server
