@@ -6,7 +6,7 @@
 - name: start nginx
   ansible.builtin.service:
     name: nginx
-    state: started
+    #state: started
     enabled: yes
 
 - name: remove html directory  #actually there is no option to remove content inside 'html' directory, it removes whole html folder
