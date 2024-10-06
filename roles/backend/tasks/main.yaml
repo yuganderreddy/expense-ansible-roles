@@ -38,7 +38,7 @@
     chdir: /app
 
 - name: copy backend service  #here copy only works for files without variables
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: backend.service.j2
     dest: /etc/systemd/system/backend.service
 
