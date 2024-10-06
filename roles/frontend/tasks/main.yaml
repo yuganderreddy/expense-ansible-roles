@@ -32,7 +32,7 @@
 
 - name: copy expense conf
   ansible.builtin.template:
-    src: frontend.conf.j2
+    src: expense.conf.j2
     dest: /etc/nginx/default.d/expense.conf
 
 - name: restart the nginx server
