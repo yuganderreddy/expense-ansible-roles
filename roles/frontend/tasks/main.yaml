@@ -28,7 +28,7 @@
 - name: Copy expense Nginx configuration
   ansible.builtin.template:
     src: expense.conf.j2
-    dest: /etc/nginx/conf.d/expense.conf
+    dest: /etc/nginx/default.d/expense.conf
 - name: Restart the Nginx server
   ansible.builtin.service:
     name: nginx
