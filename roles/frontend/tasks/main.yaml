@@ -1,41 +1,41 @@
-- name: install nginx server
+- name: Install Nginx server
   ansible.builtin.package:
     name: nginx
     state: present
-
-# - name: start nginx
-#   ansible.builtin.service:
-#     name: nginx
-#     state: started
-#     enabled: yes
-
-- name: remove html directory  #actually there is no option to remove content inside 'html' directory, it removes whole html folder
+- name: Start Nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: yes
+- name: Remove contents of the html directory
   ansible.builtin.file:
-    path: /usr/share/nginx/html/*
+    path: /usr/share/nginx/html
     state: absent
-
-- name: create html directory  #So create 'html' folder becoz above command removes it.
+    force: yes
+- name: Recreate the html directory
   ansible.builtin.file:
-    path: /usr/share/nginx/html/*
+    path: /usr/share/nginx/html
     state: directory
-
-- name: downloading frontend code
+- name: Downloading frontend code
   ansible.builtin.get_url:
     url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
     dest: /tmp/frontend.zip
-
-- name: extracting frontend code
+- name: Extracting frontend code
   ansible.builtin.unarchive:
-    src: /tmp/frontend.zip  #by default ansible thinks this file is in ansible server
+    src: /tmp/frontend.zip
     dest: /usr/share/nginx/html
     remote_src: yes
-
-- name: copy expense conf
+- name: Copy expense Nginx configuration
   ansible.builtin.template:
     src: expense.conf.j2
-    dest: /etc/nginx/default.d/expense.conf
-
-- name: restart the nginx server
-  ansible.builtin.service: 
+    dest: /etc/nginx/conf.d/expense.conf
+- name: Restart the Nginx server
+  ansible.builtin.service:
     name: nginx
     state: restarted
+
+
+
+
+
+
