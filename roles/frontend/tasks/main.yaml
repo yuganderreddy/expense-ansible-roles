@@ -7,7 +7,7 @@
   ansible.builtin.service:
     name: nginx
     state: started
-    #enabled: yes
+    enabled: yes
 
 - name: remove html directory  #actually there is no option to remove content inside 'html' directory, it removes whole html folder
   ansible.builtin.file:
@@ -35,7 +35,7 @@
     src: expense.conf.j2
     dest: /etc/nginx/default.d/expense.conf
 
-# - name: restart the nginx server
-#   ansible.builtin.service: 
-#     name: nginx
-#     state: restarted
+- name: restart the nginx server
+  ansible.builtin.service: 
+    name: nginx
+    state: restarted
